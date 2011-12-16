@@ -27,3 +27,25 @@ checks if a variable is a true array
 function isArray(a){
 	return Object.prototype.toString.call(a) === '[object Array]';
 }
+
+
+/*
+replace html entites
+*/
+HTMLSpecialChars = function(str){
+	var chars = {
+		'&': '&amp;',
+		'<': '&lt;',
+		'>': '&gt;',
+		' ': '&nbsp;',
+		"'": '&#39;',
+		'"': '&quot;',
+		'\n': '<br>'
+	};
+	
+	for(var prop in chars){
+		str = str.replace(new RegExp(prop, 'g'), chars[prop]);
+	}
+	
+	return str;
+};
