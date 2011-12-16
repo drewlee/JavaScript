@@ -6,7 +6,7 @@ function escapeRegExMeta(str){
     var meta = '\\,^,[,.,$,{,*,(,+,),|,?,<,>'.split(',');
 
     for(var i=0, l=meta.length; i<l; i++){
-        str = str.replace(meta[i], '\\' + meta[i]);
+        str = str.replace(new RegExp('\\'+meta[i], 'g'), '\\'+meta[i]);
     }
 
     return str;
