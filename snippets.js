@@ -43,9 +43,10 @@ HTMLSpecialChars = function(str){
 		'\n': '<br>'
 	};
 	
-	for(var prop in chars){
-		str = str.replace(new RegExp(prop, 'g'), chars[prop]);
-	}
+	str = str.replace(/[&<> '"\n]/g, function(s){
+		if(s in chars){return chars[s];}
+		return false;
+	});
 	
 	return str;
 };
