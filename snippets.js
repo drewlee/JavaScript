@@ -3,11 +3,9 @@ add slashes to regular expression meta characters in strings so that they can be
 used with dynamically generated regular expressions
 */
 function escapeRegExMeta(str){
-    var meta = '\\,^,[,.,$,{,*,(,+,),|,?,<,>'.split(',');
-
-    for(var i=0, l=meta.length; i<l; i++){
-        str = str.replace(new RegExp('\\'+meta[i], 'g'), '\\'+meta[i]);
-    }
+	str = str.replace(/[\\^[\].${}*(+)|?<>]/g, function(s){
+		return '\\'+s; 
+	});
 
     return str;
 }
