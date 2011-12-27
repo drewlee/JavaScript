@@ -1,5 +1,5 @@
 /*
-add slashes to regular expression meta characters in strings so that they can be escaped
+add slashes in strings to regular expression meta characters so that they can be escaped,
 used with dynamically generated regular expressions
 */
 function escapeRegExMeta(str){
@@ -48,3 +48,22 @@ HTMLSpecialChars = function(str){
 	
 	return str;
 };
+
+
+/*
+convert a mutated array to a real array
+eg: arguments, node list, etc.
+*/
+myArray = Array.prototype.slice.call(myArray);
+
+
+/*
+unshift polyfill
+todo: test
+*/
+if(typeof Array.prototype.unshift !== 'function'){
+	Array.prototype.unshift = function(element){
+		this.splice(0, 0, element);
+		return this.length;
+	};
+}
