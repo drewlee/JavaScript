@@ -67,3 +67,28 @@ if(typeof Array.prototype.unshift !== 'function'){
 		return this.length;
 	};
 }
+
+/*
+cross browser dynamic script append
+*/
+function getScript(url, func){
+	var script = document.createElement('script');
+	
+	script.type = "text/javascript";
+	script.async = "async";
+	script.src = url;
+	
+	if(typeof func == 'function'){
+		script.onload = func;
+		
+		script.onreadystatechange = function(){
+			script.onload = null;
+			
+			if(script.readyState == 'loaded' || script.readyState == 'complete'){
+				func();
+			}
+		};
+	}
+	
+	document.getElementsByTagName('head')[0].appendChild(script);
+}
