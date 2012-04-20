@@ -69,7 +69,7 @@ if(typeof Array.prototype.unshift !== 'function'){
 }
 
 /*
-cross browser dynamic script append
+cross browser dynamic script loading
 */
 function getScript(url, func){
 	var script = document.createElement('script');
@@ -91,4 +91,13 @@ function getScript(url, func){
 	}
 	
 	document.getElementsByTagName('head')[0].appendChild(script);
+}
+
+/*
+detect iOS retina display
+*/
+if(window.devicePixelRatio >= 2){
+	alert("Hi Res @ Pixel Ratio : " + window.devicePixelRatio + " &amp; Size : " + screen.width * window.devicePixelRatio);
+}else{
+	alert("Normal @ Pixel Ratio 1 &amp; Size : " + screen.width + "+" + screen.width);
 }
