@@ -23,7 +23,7 @@ var reg = new RegExp('(^'+key+'|; '+key+')=([^;]+)');
  * Check if a value is a true array
  */
 function isArray(a){
-  return Object.prototype.toString.call(a) === '[object Array]';
+  return ({}).toString.call(a) === '[object Array]';
 }
 
 
@@ -54,7 +54,7 @@ var HTMLSpecialChars = function(str){
  * Convert a mutant array to a real array.
  * eg: arguments, node list, etc.
  */
-myArray = Array.prototype.slice.call(myArray);
+myArray = [].slice.call(myArray);
 
 
 /**
