@@ -72,32 +72,33 @@ if (typeof Array.prototype.unshift === 'undefined'){
  * Simple inheritance model
  */
 var Classy = (function(){
-  var s = {},
-    x = 'extend',
-    F = function(){};
+  var self = {},
+    name = 'extend',
+    Proxy = function(){};
 
-  s[x] = function(fn){
-    var P = this,
-      C = function(){ this.init.apply(this, arguments); },
-      o = fn( P.prototype ),
+  self[name] = function(fn){
+    var Parent = this,
+      Child = function(){ this.init.apply(this, arguments); },
+      methods = fn( Parent.prototype ),
       i;
 
-    F.prototype = P.prototype;
-    C.fn = C.prototype = new F;
-    C.fn.init = function(){};
+    Proxy.prototype = Parent.prototype;
+    Child.fn = Child.prototype = new Proxy;
+    Child.fn.init = function(){};
 
-    C[x] = this[x];
+    Child[name] = this[name];
 
-    for(i in o){
-      if(o.hasOwnProperty(i)){
-        C.fn[i] = o[i];
+    for(i in methods){
+      if(methods.hasOwnProperty(i)){
+        Child.fn[i] = methods[i];
       }
     }
 
-    return C;
+    delete Child.fn;
+    return Child;
   };
 
-  return s;
+  return self;
 })();
 
 
