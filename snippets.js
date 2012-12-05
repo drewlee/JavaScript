@@ -1,6 +1,6 @@
 /**
  * Add slashes in strings to regular expression meta characters so that they can be escaped.
- * Used with dynamically generated regular expressions.
+ * Used with dynamically generated regular expressions created with RegExp syntax.
  */
 function escapeRegExMeta(str){
   str = str.replace(/[\\^[\].${}*(+)|?<>]/g, function(s){
@@ -51,7 +51,7 @@ var HTMLSpecialChars = function(str){
 
 
 /**
- * Convert a mutatant array to a real array.
+ * Convert a mutant array to a real array.
  * eg: arguments, node list, etc.
  */
 myArray = Array.prototype.slice.call(myArray);
@@ -69,7 +69,7 @@ if (typeof Array.prototype.unshift === 'undefined'){
 
 
 /**
- * Simple inheritence model
+ * Simple inheritance model
  */
 var Classy = (function(){
   var s = {},
@@ -127,7 +127,7 @@ function getScript(url, func){
 }
 
 /**
- * Detect iOS retina display.
+ * Detect iOS retina display
  */
 if(window.devicePixelRatio >= 2){
 	alert("Hi Res @ Pixel Ratio : " + window.devicePixelRatio + " &amp; Size : " + screen.width * window.devicePixelRatio);
