@@ -111,13 +111,13 @@ function getScript(url, func){
   script.async = "async";
   script.src = url;
   
-  if(typeof func == 'function'){
+  if(typeof func === 'function'){
     script.onload = func;
     
     script.onreadystatechange = function(){
       script.onload = null;
       
-      if(script.readyState == 'loaded' || script.readyState == 'complete'){
+      if(script.readyState === 'loaded' || script.readyState === 'complete'){
         func();
       }
     };
