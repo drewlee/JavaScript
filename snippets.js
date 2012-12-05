@@ -71,7 +71,6 @@ if (typeof Array.prototype.unshift === 'undefined'){
 /**
  * Simple inheritence model
  */
-
 var Classy = (function(){
   var s = {},
     x = 'extend',
@@ -100,3 +99,39 @@ var Classy = (function(){
 
   return s;
 })();
+
+
+/**
+ * Cross browser dynamic script loading
+ */
+function getScript(url, func){
+	var script = document.createElement('script');
+	
+	script.type = "text/javascript";
+	script.async = "async";
+	script.src = url;
+	
+	if(typeof func == 'function'){
+		script.onload = func;
+		
+		script.onreadystatechange = function(){
+			script.onload = null;
+			
+			if(script.readyState == 'loaded' || script.readyState == 'complete'){
+				func();
+			}
+		};
+	}
+	
+	document.getElementsByTagName('head')[0].appendChild(script);
+}
+
+/**
+ * Detect iOS retina display.
+ */
+if(window.devicePixelRatio >= 2){
+	alert("Hi Res @ Pixel Ratio : " + window.devicePixelRatio + " &amp; Size : " + screen.width * window.devicePixelRatio);
+}else{
+	alert("Normal @ Pixel Ratio 1 &amp; Size : " + screen.width + "+" + screen.width);
+}
+
