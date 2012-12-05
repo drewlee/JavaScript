@@ -86,14 +86,15 @@ var Classy = (function(){
     Child.fn = Child.prototype = new Proxy;
     Child.fn.init = function(){};
 
-    Child[name] = this[name];
+    Child[name] = Parent[name];
 
     for(i in methods){
       if(methods.hasOwnProperty(i)){
         Child.fn[i] = methods[i];
       }
     }
-
+    
+    Child.fn.constructor = Parent;
     delete Child.fn;
     return Child;
   };
