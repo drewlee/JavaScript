@@ -71,7 +71,7 @@ if (typeof Array.prototype.unshift === 'undefined'){
 /**
  * Simple inheritance model
  */
-var Classy = (function(){
+var Classify = (function(){
   var self = {},
     name = 'extend',
     Proxy = function(){};
