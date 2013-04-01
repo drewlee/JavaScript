@@ -137,3 +137,18 @@ if(window.devicePixelRatio >= 2){
   alert("Normal @ Pixel Ratio 1 &amp; Size : " + screen.width + "+" + screen.width);
 }
 
+/**
+ * Namespacing pattern
+ */
+function namespace(ns){
+  var pieces = ns.split('.'),
+    obj = window;  
+  
+  for (var i=0, len=pieces.length; i<len; i++){
+    if (!(pieces[i] in obj)){
+      obj[pieces[i]] = {};
+    }
+
+    obj = obj[pieces[i]];
+  }
+}
