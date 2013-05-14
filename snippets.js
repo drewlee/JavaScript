@@ -83,7 +83,7 @@ var Classify = (function(){
       i;
 
     Proxy.prototype = Parent.prototype;
-    Child.fn = Child.prototype = new Proxy;
+    Child.fn = Child.prototype = new Proxy();
     Child.fn.init = function(){};
 
     Child[name] = Parent[name];
@@ -128,6 +128,7 @@ function getScript(url, func){
   document.getElementsByTagName('head')[0].appendChild(script);
 }
 
+
 /**
  * Detect iOS retina display
  */
@@ -137,12 +138,13 @@ if(window.devicePixelRatio >= 2){
   alert("Normal @ Pixel Ratio 1 &amp; Size : " + screen.width + "+" + screen.width);
 }
 
+
 /**
  * Namespacing pattern
  */
 function namespace(ns){
   var pieces = ns.split('.'),
-    obj = window;  
+      obj = window;
   
   for (var i=0, len=pieces.length; i<len; i++){
     if (!(pieces[i] in obj)){
@@ -151,4 +153,33 @@ function namespace(ns){
 
     obj = obj[pieces[i]];
   }
+}
+
+
+/**
+ * Using Node's EventEmitter to create a custom pub/sub utility
+ */
+var util = require("util"),
+    events = require("events");
+
+var PubSub = function() {
+  events.EventEmitter.call(this);
+  return this;
+};
+
+// add the properties of EventEmitter to PubSub
+util.inherits(PubSub, events.EventEmitter);
+
+// expose instances of PubSub when the module is consumed
+exports.PubSub = PubSub;
+
+
+/**
+ * Clever technique in checking for an empty object
+ */
+function isEmpty(obj){
+  for (var prop in obj){
+    return false;
+  }
+  return true;
 }
